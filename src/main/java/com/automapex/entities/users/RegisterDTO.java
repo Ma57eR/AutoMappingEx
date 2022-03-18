@@ -44,7 +44,7 @@ public class RegisterDTO {
             throw new ValidationException("Email must contains @ and .");
         }
 
-        //String passValidationRegex = "[A-Z]"
+
 
     }
 

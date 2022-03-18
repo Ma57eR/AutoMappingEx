@@ -1,5 +1,6 @@
 package com.automapex;
 
+import com.automapex.Exceptions.ValidationException;
 import com.automapex.entities.users.RegisterDTO;
 import com.automapex.entities.users.User;
 import com.automapex.services.UserService;
@@ -48,7 +49,14 @@ public class ConsoleRunner implements CommandLineRunner {
 
         String command = scan.nextLine();
 
+        String result;
+        try {
+            result = execute(command);
+        } catch (ValidationException ex) {
+            result = ex.getMessage();
+        }
 
-        System.out.println(execute(command));
+
+        System.out.println(result);
     }
 }
