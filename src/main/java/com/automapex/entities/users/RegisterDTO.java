@@ -4,6 +4,11 @@ import com.automapex.Exceptions.ValidationException;
 
 public class RegisterDTO {
     private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
     private String password;
     private String confirmPassword;
     private String fullName;
@@ -40,10 +45,16 @@ public class RegisterDTO {
     }
 
     private void validate() {
-        if (!email.contains("@") || !email.contains(".")) {
+        int indexOfAt = email.indexOf("@");
+        int indexOfDot = email.lastIndexOf(".");
+        if (indexOfAt < 0 || indexOfDot < 0 || indexOfAt > indexOfDot) {
             throw new ValidationException("Email must contains @ and .");
         }
 
+        //TODO: Validate password
+        if (!password.equals(confirmPassword)) {
+            throw new ValidationException("Password must match!");
+        }
 
 
     }
